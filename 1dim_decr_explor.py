@@ -30,6 +30,7 @@ class agent:
         self.Q = np.zeros(R.shape)
         self.gamma = GAMMA
         self.learning_rate = LEARNING_RATE
+        
     def go_right(self):
         if (self.x<self.xmax):
             self.Q[self.x,2] = self.Q[self.x,2] + self.learning_rate*(R[self.x,2] + self.gamma*max(self.Q[self.x+1,:]) - self.Q[self.x,2])
@@ -61,7 +62,7 @@ class agent:
 
 
 gamma = 0.99
-axissize = 1000
+axissize = 100
 target=int(0.5*axissize)
 N_actions=3  #go left; stay; go right
 N_episodes = int(3*axissize)
