@@ -1,5 +1,9 @@
 import fp_classes
 
+"""
+Q[0] t
+learning curve
+"""
 
 if __name__ == "__main__":
 	env = fp_classes.environment()
