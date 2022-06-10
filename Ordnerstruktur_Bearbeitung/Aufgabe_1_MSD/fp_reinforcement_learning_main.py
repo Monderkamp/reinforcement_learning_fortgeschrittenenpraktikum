@@ -9,7 +9,7 @@ learner = fp_classes.agent(env)
 
 #AUFGABE: HIERHIN KOMMT DER CODE ZUR UNTERSUCHUNG DES MSD
 
-T_XPOW2_DATAPOINTS = []
+T_XPOW2_DATAPOINTS = dict()
 T0 = tm.time()
 for i in range(learner.N_episodes):
 	#print(i)
@@ -23,19 +23,31 @@ for i in range(learner.N_episodes):
 	learner.x = 0
 
 	for t in range(learner.tmax_MSD):
-		T_XPOW2_DATAPOINTS.append([t,learner.x**2])
+		if not t in T_XPOW2_DATAPOINTS.keys():
+			T_XPOW2_DATAPOINTS[t] = []
+		T_XPOW2_DATAPOINTS[t].append(learner.x**2)
+		
+		#AUFGABE: random_step here	
 		learner.random_step()
 
+#exit()
 
+for key in T_XPOW2_DATAPOINTS.keys():
+	T_XPOW2_DATAPOINTS[key] =  np.mean(T_XPOW2_DATAPOINTS[key])
 
-T_XPOW2_DATAPOINTS = np.array(T_XPOW2_DATAPOINTS)
+X = np.array(list(T_XPOW2_DATAPOINTS.keys()))
+Y = np.array(list(T_XPOW2_DATAPOINTS.values()))
+plt.rcParams.update({'font.size': 18})
+
 fig,ax = plt.subplots()
-ax.scatter(T_XPOW2_DATAPOINTS[:,0],T_XPOW2_DATAPOINTS[:,1],marker=".")
 
-p = np.polyfit(T_XPOW2_DATAPOINTS[:,0],T_XPOW2_DATAPOINTS[:,1],1)
+ax.plot(X,Y,label="Simulationsdaten")
+p = np.polyfit(X,Y,1)
 print(p)
-
-
+ax.plot(X,p[0]*X+p[1],linestyle="dashed",label="fit")
+ax.legend()
+ax.set_xlabel(r"$t$")
+ax.set_ylabel(r"$\left <x^2(t) \right >$")
 plt.show()
 
 

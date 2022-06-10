@@ -8,7 +8,7 @@ class environment:
 	
 class agent:
 	def __init__(self,env_):
-		self.N_episodes = 200000
+		self.N_episodes = 20000
 		self.tmax_MSD = 100
 		
 		self.x = 1
@@ -19,7 +19,7 @@ class agent:
 		self.target_reward = 10.0
 		self.zero_fraction = 0.9
 		
-		self.D = 0.05
+		self.D = 0.005
 		self.P_diffstep = 2.0*self.D #AUFGABE 
 		
 		if self.P_diffstep > 1.0:
