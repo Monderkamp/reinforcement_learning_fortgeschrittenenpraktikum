@@ -23,7 +23,9 @@ class agent:
 		self.zero_fraction = 0.9
 
 		self.D = 0.05
-		self.P_diffstep = 2.0*self.D #AUFGABE 
+		self.P_diffstep = None
+		
+		self.x_old = None
 		
 		if self.P_diffstep > 1.0:
 			print(f"self.P_step = {self.P_step} > 1.0 in agent.__init__(...)")
