@@ -3,22 +3,23 @@ import numpy as np
 class environment:
 	 def __init__(self):
 		 self.N_states = 100
-		 self.N_states = 50
 		 self.target_position = 8
 		 self.starting_position = 2
 	
 class agent:
 	def __init__(self,env_):
 		self.N_episodes = 10000
+		# ~ self.N_episodes = 100
 		self.tmax_MSD = 100
 		
 		self.x = 1
 		self.Q = np.zeros((env_.N_states,3))
-		self.alpha = 0.01
+		self.alpha = 0.999999
 		self.gamma = 0.9
 		self.epsilon = 1.0
 		self.target_reward = 10.0
 		self.zero_fraction = 0.9
+		self.output_state = 10
 		
 		self.D = 0.125
 		self.D = 0.0

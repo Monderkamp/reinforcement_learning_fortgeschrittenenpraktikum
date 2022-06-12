@@ -56,7 +56,9 @@ learner = fp_classes.agent(env)
 # ~ plt.show()
 
 #exit()
+
 LEARNING_CURVE = []
+Q_VALUES_OVER_TIME = []
 
 for episode in range(learner.N_episodes):
 	if ((episode%(learner.N_episodes//100)) == 0) and episode:
@@ -77,15 +79,14 @@ for episode in range(learner.N_episodes):
 		learner.choose_action()
 		learner.perform_action(env)
 		learner.update_Q(env)
+		Q_VALUES_OVER_TIME.append(learner.Q[learner.output_state])
 		stepcounter += 1
 	LEARNING_CURVE.append([episode,(stepcounter)/total_dis])
-
-
-
 
 f = open("Q_MATRIX_" + now + ".txt","w")
 f.write(str(learner.Q))
 f.close()
+
 
 LEARNING_CURVE = np.array(LEARNING_CURVE)
 fig,ax = plt.subplots()
@@ -93,4 +94,15 @@ ax.semilogy(LEARNING_CURVE[:,0],LEARNING_CURVE[:,1])
 ax.set_xlabel(r"episode")
 ax.set_ylabel(r"T")
 fig.savefig("learning_curve_" + now + ".png",bbox_inches="tight")
+plt.close(fig)
+
+fig,ax = plt.subplots()
+Q_VALUES_OVER_TIME = np.array(Q_VALUES_OVER_TIME)
+# ~ for a in Q_VALUES_OVER_TIME:
+	# ~ print(a)
+ax.loglog(Q_VALUES_OVER_TIME[:,0],label=f"Q_{learner.output_state},0")
+ax.loglog(Q_VALUES_OVER_TIME[:,1],label=f"Q_{learner.output_state},1")
+ax.loglog(Q_VALUES_OVER_TIME[:,2],label=f"Q_{learner.output_state},2")
+ax.set_xlabel(r"episode")
+fig.savefig("Q_over_time_" + now + ".png",bbox_inches="tight")
 plt.close(fig)
