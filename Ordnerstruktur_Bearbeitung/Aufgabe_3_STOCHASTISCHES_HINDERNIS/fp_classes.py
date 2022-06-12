@@ -7,8 +7,8 @@ class environment:
 		 self.target_position = 12
 		 self.starting_position = 8
 		 
-		 self.obstacle_interval = np.arange(9,10)
-		 self.P_obstacle = 0.01
+		 self.obstacle_interval = np.arange(9,12)
+		 self.P_obstacle = 0.75
 	
 class agent:
 	def __init__(self,env_):
@@ -18,7 +18,7 @@ class agent:
 		
 		self.x = 1
 		self.Q = np.zeros((env_.N_states,3))
-		self.alpha = 0.999999
+		self.alpha = 0.01
 		self.gamma = 0.9
 		self.epsilon = 1.0
 		self.target_reward = 10.0
@@ -70,7 +70,7 @@ class agent:
 	
 	def stoch_obstacle(self,env_):
 		if (self.x in env_.obstacle_interval) and (np.random.rand() < env_.P_obstacle):
-			print(env_.obstacle_interval)
+			# ~ print(env_.obstacle_interval)
 			self.x -= 1
 
 
