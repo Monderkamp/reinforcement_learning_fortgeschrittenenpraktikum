@@ -8,7 +8,7 @@ class environment:
 		 self.starting_position = 8
 		 
 		 self.obstacle_interval = np.arange(9,12)
-		 self.P_obstacle = 0.75
+		 self.P_obstacle = 0.71
 	
 class agent:
 	def __init__(self,env_):
