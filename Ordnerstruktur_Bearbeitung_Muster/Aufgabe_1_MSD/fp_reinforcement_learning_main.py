@@ -63,3 +63,6 @@ plt.show()
 
 
 # ~ print(learner.Q)
+
+
+
