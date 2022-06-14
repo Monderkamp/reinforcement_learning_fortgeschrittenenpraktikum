@@ -99,7 +99,7 @@ for i in range(len(LAST_TRAJECTORY)-1):
 		
 
 for i,x in enumerate(LAST_TRAJECTORY_WITHOUT_PBJUMPS):
-	trajax.plot(np.array(LAST_TRAJECTORY_WITHOUT_PBJUMPS)[:i],np.linspace(0,0,len(np.array(LAST_TRAJECTORY_WITHOUT_PBJUMPS)[:i])),color="red")	
+	trajax.plot(np.array(LAST_TRAJECTORY_WITHOUT_PBJUMPS)[:i],np.linspace(0,0,len(np.array(LAST_TRAJECTORY_WITHOUT_PBJUMPS)[:i])),color="blue")	
 	ab = AnnotationBbox(imagebox2, (env.target_position, 0.0),frameon=False)
 	trajax.add_artist(ab)
 	if x:
