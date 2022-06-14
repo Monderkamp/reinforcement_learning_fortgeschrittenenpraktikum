@@ -3,11 +3,13 @@ import numpy as np
 import matplotlib.pyplot as plt
 import time as tm
 
+from datetime import date
+import datetime
+
+now = date.today().strftime("%y-%m-%dT") + datetime.datetime.now().strftime("%H_%M_%S")
+
 env = fp_classes.environment()
 learner = fp_classes.agent(env)
-
-
-#AUFGABE: HIERHIN KOMMT DER CODE ZUR UNTERSUCHUNG DES MSD
 
 T_XPOW2_DATAPOINTS = dict()
 T0 = tm.time()
@@ -28,9 +30,9 @@ for i in range(learner.N_episodes):
 		T_XPOW2_DATAPOINTS[t].append(learner.x**2)
 		
 		#AUFGABE: random_step here	
-		learner.random_step()
 
-#exit()
+
+exit()
 
 for key in T_XPOW2_DATAPOINTS.keys():
 	T_XPOW2_DATAPOINTS[key] =  np.mean(T_XPOW2_DATAPOINTS[key])
@@ -51,15 +53,22 @@ ax.set_ylabel(r"$\left <x^2(t) \right >$")
 plt.show()
 
 
-# ~ for episode in range(learner.N_episodes):
-	# ~ #print(episode)
-	# ~ learner.x = env.starting_position
-	# ~ while (learner.x != env.target_position) or learner.chosen_action != 1:
-		
-		# ~ learner.adjust_epsilon(episode)
-		# ~ learner.choose_action()
-		# ~ learner.perform_action(env)
-		# ~ learner.update_Q(env)
 
 
-# ~ print(learner.Q)
+exit()
+
+
+
+for episode in range(learner.N_episodes):
+	if ((episode%(learner.N_episodes//100)) == 0) and episode:
+		progress = 1.*episode/learner.N_episodes
+		print("------------------------------------------")
+		print(f"Fortschritt: {progress}")
+
+	learner.x = env.starting_position
+	learner.chosen_action = None
+
+	while (learner.x != env.target_position) or learner.chosen_action != 1:
+		pass
+
+
