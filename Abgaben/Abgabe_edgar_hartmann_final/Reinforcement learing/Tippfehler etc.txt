@@ -1,0 +1,8 @@
+3.1 Mittleres Verschiebungsquadrat:	Absatz 3: ...bsow....
+					Aufgabe 3: ...textit(?)learner.random step()
+					Aufgabe 8: Aufgabe 1 MSD D0 D1 NAME ZEIT.txt... nicht .png/jgp?
+
+3.3.1 					Aufgabe 5: ist der Reward nicht in Zustand 2?
+					Endtext: ...vorGEstellten... und Die Wahl
+
+3.3.2 Learning rate: 			Aufgabe 4: Die -> Sie
